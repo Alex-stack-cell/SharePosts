@@ -11,7 +11,7 @@
         private $user = DB_USER;
         private $password = DB_PASS;
         private $dbname = DB_NAME;
-
+       
         private $dbh;// database handler => prepare a statement
         private $stmt;
         private $error;
@@ -20,8 +20,9 @@
          * Establish the connection to the database
          */
         public function __construct(){
-            //set DSN
+            //set DSN 
             $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname;
+            
             $options = array(
                 PDO::ATTR_PERSISTENT =>true, //persist connection for better performance
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION //errors handling;
@@ -30,6 +31,7 @@
             //Create PDO instance
             try {
                 $this->dbh = new PDO($dsn, $this->user,$this->password, $options);
+               
             } catch(PDOException $error){
                 $this->error = $error->getMessage();
             }
@@ -94,7 +96,7 @@
         /**
          * Get single record as object
          *
-         * @return void
+         * @return object
          */
         public function single(){
             $this->execute();
