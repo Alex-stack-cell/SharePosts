@@ -9,20 +9,19 @@
         /**
          * Register User
          *
-         * @return void
+         * @return boolean
          */
         public function register($data){
             $this->db->query("INSERT INTO users (name, email, password) VALUES(:name, :email, :password)");
             //Bind values
-            // print_r($this->db);
             $this->db->bind(':name',$data['name']);
             $this->db->bind(':email',$data['email']);
             $this->db->bind(':password',$data['password']);
+            
             //Execute
             if($this->db->execute()){
                 return true;
             } else {
-                print_r('test');
                 return false;
             }
         }
@@ -44,7 +43,7 @@
          * Find user by email
          *
          * @param [type] $email
-         * @return void
+         * @return boolean
          */
         public function findUserByEmail($email){
             $this->db->query("SELECT * FROM users WHERE email = :email");
@@ -58,5 +57,14 @@
             } else {
                 return false;
             }
+        }
+
+        public function getUserById($id){
+            $this->db->query("SELECT * FROM users WHERE id = :id");
+            $this->db->bind(':id',$id);
+
+            $row = $this->db->single();
+
+            return $row;
         }
     }

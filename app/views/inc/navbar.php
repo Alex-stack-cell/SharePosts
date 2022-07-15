@@ -18,6 +18,9 @@
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
                 <?php if(isset($_SESSION['user_id'])):?>
                 <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Welcome <?=$_SESSION['user_name']?></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="<?=URLROOT?>/users/logout">Logout</a>
                 </li>
                 <?php else : ?>
@@ -25,7 +28,7 @@
                     <a class="nav-link" aria-current="page" href="<?=URLROOT?>/users/register">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=URLROOT?>/users/login">Login</a>
+                    <a class="nav-link" href="<?=URLROOT?>/users/login">>Login</a>
                 </li>
                 <?php endif; ?>
             </ul>
